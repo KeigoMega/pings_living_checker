@@ -1,4 +1,4 @@
-# v200317-1250
+# v200317-1532
 
 import os
 import pings
@@ -21,9 +21,9 @@ def main():
                 i+=1
                 res = p.ping(ip)
                 if not res.is_reached():
-                    texts += f'{i:2} \033[41m{name} ({ip})\033[0m\n'
+                    texts += f'{i:2} \033[41m消失 {name} ({ip})\033[0m\n'
                 else:
-                    texts += f'{i:2} \033[32m{name} ({ip})\033[0m\n'
+                    texts += f'{i:2} \033[32m生存 {name} ({ip})\033[0m\n'
                 print(hb, end='\r')
                 hb += '.'
             os.system('cls')
