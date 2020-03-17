@@ -1,32 +1,5 @@
 #modules.py
 
-#STVSecuritySystem###############################
-
-# checking drivers license of STV
-def checkLicense():
-    try:
-        from subprocess import getstatusoutput
-        uuid = (getstatusoutput('wmic csproduct get uuid /format:list')[1])
-        uuid = uuid.replace('UUID=', '')
-        uuid = uuid.strip()
-        uuid_splitted = uuid.split('-')
-        wakeupkey = 0
-
-        for wakeupkey_elem in uuid_splitted:
-            wakeupkey += int(wakeupkey_elem, 16)
-        wakeupkey = str(wakeupkey * int('c0ff1e', 16) ** 3)
-        try:
-            with open('inifiles/_KEEP_ON_THINKING.stv', mode='r', encoding='utf-8-sig') as licensefile:
-                wakeupkey_pair = licensefile.readline()
-        except:
-            return 0
-        if wakeupkey != wakeupkey_pair:
-            return -1
-        else:
-            return 1
-    except:
-        return 0
-
 #Handlers########################################
 
 # handling dll
@@ -128,54 +101,6 @@ def getMyNetworkPort():
     if ret:
         my_port = netwks.getint('my_network_port') # int!!!
     return my_port
-
-# get stv_id
-def getStvId():
-    stv_id = 'STV_ANONYMOUS'
-    ret, num_plate = readDefault('inifiles/number_plate.ini')
-    if ret:
-        stv_id = num_plate.get('stv_id')
-    return stv_id
-
-# get stv_section
-def getStvSection():
-    stv_section = 'section0'
-    ret, num_plate = readDefault('inifiles/number_plate.ini')
-    if ret:
-        stv_section = num_plate.get('stv_section')
-    return stv_section
-
-# get stv_num
-def getStvNum():
-    stv_num = 0
-    ret, num_plate = readDefault('inifiles/number_plate.ini')
-    if ret:
-        stv_num = num_plate.getint('stv_num')
-    return stv_num
-
-# get stv_section
-def getStvHomeNum():
-    home_no = '0'
-    ret, num_plate = readDefault('inifiles/number_plate.ini')
-    if ret:
-        home_no = num_plate.get('home_no')
-    return home_no
-
-# get stv_section
-def getStvHomeNumSub():
-    home_sub_no = '0'
-    ret, num_plate = readDefault('inifiles/number_plate.ini')
-    if ret:
-        home_sub_no = num_plate.get('home_sub_no')
-    return home_sub_no
-
-# get stv_section
-def getStvHomeWait():
-    home_wait_no = '0'
-    ret, num_plate = readDefault('inifiles/number_plate.ini')
-    if ret:
-        home_wait_no = num_plate.get('home_wait_no')
-    return home_wait_no
 
 # get server_ip
 def getServerIP():
