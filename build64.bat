@@ -1,0 +1,2 @@
+pyinstaller pings_living_checker.spec
+cleanup.bat

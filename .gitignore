@@ -1,2 +1,3 @@
 inifiles/config.ini
 __pycache__
+*.exe
